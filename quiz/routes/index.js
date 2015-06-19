@@ -1,15 +1,19 @@
 var express = require('express');
 var router = express.Router();
+var title = { title: 'Quiz @danielearning' };
 
 var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Quiz @danielearning' });
+  res.render('index', title);
 });
 
 router.get('/quizes/question', quizController.question);
 router.get('/quizes/answer', quizController.answer);
+router.get('/author', function(req, res) {
+  res.render('author', title);
+});
 
 module.exports = router;
 
