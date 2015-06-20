@@ -11,6 +11,10 @@
     "npm": "1.4.x"
   },
   
+  "devDependencies": {
+    "sqlite3": "^3.0.4"
+  },
+  
   "dependencies": {
     "express": "~4.9.0",
     "express-partials": "~0.3.0",

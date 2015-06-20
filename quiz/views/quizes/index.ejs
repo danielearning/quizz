@@ -1,0 +1,22 @@
+<html>
+
+<form action="/quizes">
+Búsqueda: <input type="text" name="search" placeholder="Texto de búsqueda"/> <input type="submit" value="Enviar"/>
+</form>
+<% if (search !== "") { %>
+Filtrando por <code><%= search %></code>
+<% } %>
+
+<% if (quizes.length == 0) { %>
+<p>No se han encontrado preguntas.</p>
+<% } else { %>
+
+<table>
+<thead><tr><td>Pregunta</td></tr></thead>
+<% var i; for (i=0; i < quizes.length; i++) { %>        
+    <tr><td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr> 
+<% } %>
+</table>
+<% } %>
+
+</html>
