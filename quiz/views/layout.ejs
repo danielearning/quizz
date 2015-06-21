@@ -1,3 +1,8 @@
+<%
+  if (typeof(errors) === "undefined") {
+    errors = [];
+  }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +35,17 @@
   </nav>
 
   <section class="main" id="s1">
+    <% if (errors.length) { %>
+      <p id='ErrorMsgs'>
+        Corrija los siguientes errores:<br/>
+        <ul>
+        <% for (var i in errors) { %>
+           <li><%= errors[i].message %></li>
+        <% } %>
+        </ul>
+      </p>
+    <% } %>
+
     <div>
       <%- body %>
     </div>
