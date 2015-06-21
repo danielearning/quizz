@@ -12,11 +12,16 @@ Filtrando por <code><%= search %></code>
 <% } else { %>
 
 <table>
-<thead><tr><td>Pregunta</td></tr></thead>
+<thead><tr><td>Pregunta</td><td>Acciones</td></tr></thead>
 <% var i; for (i=0; i < quizes.length; i++) { %>        
     <tr>
       <td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
-      <td><a href="/quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></td>
+      <td><a href="/quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a>
+      
+      <form style="display: inline" method="post" action="/quizes/<%= quizes[i].id %>?_method=delete">
+	<button type="submit" onclick="return confirm('¿Borrar «<%= quizes[i].pregunta %>»?');">Borrar</button>
+      </form>
+      </td>
     </tr> 
 <% } %>
 </table>
