@@ -27,16 +27,27 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
-  
   if (!req.session.redir) {
     req.session.redir = '/';
   }
-  
   //if (!req.path.match(/\/login|\/logout|\/user/)) {
   if(req.path !== "/login") {
     req.session.redir = req.path;
   }
   res.locals.session = req.session;
+  next();
+});
+
+app.use(function(req, res, next) {
+  if (req.session.user) {
+    var curtime = (new Date()).getTime();
+    if (curtime - req.session.lastTransaction > 1000 * 10 * 2) {
+      delete req.session.user;
+      delete req.session.lastTransaction;
+    } else {
+      req.session.lastTransaction = curtime;
+    }
+  } // If no session.user, nothing to caducate
   next();
 });
 
