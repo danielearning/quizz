@@ -45,12 +45,26 @@ sequelize.sync().then(function() {
     if(count === 0) {   // la tabla se inicializa solo si está vacía
       Quiz.bulkCreate( 
         [ 
+          {pregunta: 'Color con mayor longitud de onda',   respuesta: 'Rojo',   tema: 'ciencia'},
+          {pregunta: 'Capital de Gondor',   respuesta: 'Minas Tirith',   tema: 'humanidades'},
           {pregunta: 'Capital de Italia',   respuesta: 'Roma',   tema: 'otro'},
           {pregunta: 'Capital de Portugal', respuesta: 'Lisboa', tema: 'otro'},
           {pregunta: 'Capital de Alemania', respuesta: 'Berlín', tema: 'otro'},
           {pregunta: 'Capital de España',   respuesta: 'Madrid', tema: 'otro'},
           {pregunta: 'Capital de Zimbabue', respuesta: 'Harare', tema: 'otro'},
           {pregunta: 'Capital de Francia',  respuesta: 'París',  tema: 'otro'}
+        ]
+      ).then(function(){console.log('Base de datos inicializada')});
+    };
+  });
+    Comment.count().then(function (count){
+    if(count === 0) {   // la tabla se inicializa solo si está vacía
+      Comment.bulkCreate( 
+        [ 
+          {comment: 'Primerooooo', quizId: 1},
+          {comment: 'Primero!', quizId: 1},
+          {comment: 'Ah pues no', quizId: 1},
+          {comment: 'Maburroooooo', quizId: 2}
         ]
       ).then(function(){console.log('Base de datos inicializada')});
     };

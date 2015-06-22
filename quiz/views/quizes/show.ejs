@@ -1,23 +1,28 @@
 <!DOCTYPE html>
     <form method="get" action="/quizes/<%= quiz.id %>/answer">        
-      Pregunta:
+      <h2>Pregunta</h2>
       <p><%= quiz.pregunta %> </p>
       <input type="text" name="respuesta" placeholder="Respuesta"/>
       <input type="submit" value="Enviar">
     </form>
 
-    <p>Comentarios: 
+    <h2>Comentarios</h2>
+    <p> 
       <ul>
       <% for (i in quiz.Comments) { %>
-      <li><%= quiz.Comments[i].comment %></li>
+      <li>
+	<% if (quiz.Comments[i].publicado || session.user) { %>
+	<%= quiz.Comments[i].comment %>
+	  <% if (!quiz.Comments[i].publicado && session.user) { %>
+	    <form method="post" action="/comments/<%= quiz.Comments[i].id %>/publish?_method=put&quizId=<%= quiz.id %>"><button type="submit" value="Publicar">Publicar</button></form>
+	  <% } %>
+	<% } else { %>
+	  &lt;Comentario pendiente de moderación y publicación&gt;
+	<% } %>
+      </li>
       <% } %>
-      <% if (session.user) { %>
       <li><a href="/quizes/<%= quiz.id %>/comments/new"><button>Añadir</button></li>
-      <% } %>
       </ul>
-      <% if (!session.user) { %>
-	<p>Regístrese para ver las acciones disponibles.</p>
-      <% } %>
     </p>
 
     
