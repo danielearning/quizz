@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Quiz</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  </head>
-  <body>
-
     <form method="get" action="/quizes/<%= quiz.id %>/answer">        
       Pregunta:
       <p><%= quiz.pregunta %> </p>
@@ -14,6 +6,13 @@
       <input type="submit" value="Enviar">
     </form>
 
+    <p>Comentarios: 
+      <ul>
+      <% for (i in quiz.Comments) { %>
+      <li><%= quiz.Comments[i].comment %></li>
+      <% } %>
+      <li><a href="/quizes/<%= quiz.id %>/comments/new"><button>Añadir</button></li>
+      </ul>
+    </p>
+
     
-  </body>
-</html>

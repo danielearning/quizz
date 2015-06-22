@@ -3,6 +3,7 @@ var router = express.Router();
 var title = { title: 'Quiz @danielearning' };
 
 var quizController = require('../controllers/quiz_controller');
+var commentController = require('../controllers/comment_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -21,6 +22,9 @@ router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 router.get('/quizes/:quizId(\\d+)/edit',   quizController.edit);
 router.put('/quizes/:quizId(\\d+)',        quizController.update);
 router.delete('/quizes/:quizId(\\d+)',     quizController.destroy);
+
+router.get ('/quizes/:quizId(\\d+)/comments/new',    commentController.new);
+router.post('/quizes/:quizId(\\d+)/comments/create', commentController.create);
 
 router.get('/author', function(req, res) {
   res.render('author', title);
