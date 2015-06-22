@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<h2>Añadir comentario</h2>
+<form method="post" action="/quizes/<%= quiz.id %>/comments/create" >      
+  <% include _form.ejs %>
+</form>
+
+<h2>Pregunta</h2>
+<p>Categoría: <%= quiz.tema %></p>
+<p>Pregunta: <%= quiz.pregunta %></p>
+<p>Respuesta: <%= quiz.respuesta %></p>
+<h2>Comentarios anteriores</h2>
+<p> 
+<ul>
+  <% for (i in quiz.Comments) { %>
+  <li>
+    <% if (quiz.Comments[i].publicado || session.user) { %>
+    <%= quiz.Comments[i].comment %>
+    <% } else { %>
+      &lt;Comentario pendiente de moderación y publicación&gt;
+    <% } %>
+  </li>
+  <% } %>
+  </ul>
+      
+</p>

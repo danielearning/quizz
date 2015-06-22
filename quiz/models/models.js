@@ -62,10 +62,10 @@ sequelize.sync().then(function() {
     if(count === 0) {   // la tabla se inicializa solo si está vacía
       Comment.bulkCreate( 
         [ 
-          {comment: 'Primerooooo', quizId: 1},
-          {comment: 'Primero!', quizId: 1},
-          {comment: 'Ah pues no', quizId: 1},
-          {comment: 'Maburroooooo', quizId: 2}
+          {comment: 'Primerooooo', QuizId: 1},
+          {comment: 'Primero!', QuizId: 1},
+          {comment: 'Ah pues no', QuizId: 1},
+          {comment: 'Maburroooooo', QuizId: 2}
         ]
       ).then(function(){console.log('Base de datos inicializada')});
     };

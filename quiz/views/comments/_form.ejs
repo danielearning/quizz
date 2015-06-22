@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<p><label for="preg" class="rem">Comentario: </label>
+<input type="text" id="comment" name="comment[comment]" placeholder="Comentario" value="<%= comment.comment || "" %>"/> </p>
+
+<a href="/quizes/<%= quiz.id || "" %>"><button type="button">Cancelar</button></a>
+<input type="submit" value="Salvar">
