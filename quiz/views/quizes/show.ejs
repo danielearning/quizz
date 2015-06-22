@@ -11,8 +11,13 @@
       <% for (i in quiz.Comments) { %>
       <li><%= quiz.Comments[i].comment %></li>
       <% } %>
+      <% if (session.user) { %>
       <li><a href="/quizes/<%= quiz.id %>/comments/new"><button>Añadir</button></li>
+      <% } %>
       </ul>
+      <% if (!session.user) { %>
+	<p>Regístrese para ver las acciones disponibles.</p>
+      <% } %>
     </p>
 
     
