@@ -4,6 +4,7 @@ var title = { title: 'Quiz @danielearning' };
 
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
+var sessionController = require('../controllers/session_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -25,6 +26,10 @@ router.delete('/quizes/:quizId(\\d+)',     quizController.destroy);
 
 router.get ('/quizes/:quizId(\\d+)/comments/new',    commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments/create', commentController.create);
+
+router.get   ('/login', sessionController.new);
+router.post  ('/login', sessionController.create);
+router.delete('/login', sessionController.destroy);
 
 router.get('/author', function(req, res) {
   res.render('author', title);
